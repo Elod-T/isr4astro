@@ -1,0 +1,27 @@
+{
+  "name": "@example/framework-multiple",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/preact": "^2.2.1",
+    "@astrojs/react": "^2.2.1",
+    "@astrojs/solid-js": "^2.2.0",
+    "@astrojs/svelte": "^2.2.0",
+    "@astrojs/vue": "^2.2.1",
+    "astro": "^2.5.6",
+    "preact": "^10.13.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "solid-js": "^1.7.4",
+    "svelte": "^3.58.0",
+    "vue": "^3.2.47"
+  }
+}
