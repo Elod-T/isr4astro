@@ -1,17 +1,16 @@
 {
   "name": "@isr4astro/astro",
   "version": "2.5.7",
-  "description": "Astro is a modern site builder with web best practices, performance, and DX front-of-mind.",
+  "description": "THIS IS A CUSTOMIZED BUILD OF ASTRO AND ONLY SHOULD BE USED WITH @isr4astro/core",
   "type": "module",
-  "author": "withastro",
+  "author": "Elod-T",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/withastro/astro.git",
-    "directory": "packages/astro"
+    "url": "https://github.com/Elod-T/isr4astro.git",
+    "directory": "astro"
   },
-  "bugs": "https://github.com/withastro/astro/issues",
-  "homepage": "https://astro.build",
+  "bugs": "https://github.com/Elod-T/isr4astro/issues",
   "types": "./dist/@types/astro.d.ts",
   "typesVersions": {
     "*": {
