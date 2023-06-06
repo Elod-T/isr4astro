@@ -1,6 +1,6 @@
 {
   "name": "@isr4astro/astro",
-  "version": "2.5.7",
+  "version": "1.0.3",
   "description": "THIS IS A CUSTOMIZED BUILD OF ASTRO AND ONLY SHOULD BE USED WITH @isr4astro/core",
   "type": "module",
   "author": "Elod-T",

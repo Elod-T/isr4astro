@@ -52,6 +52,7 @@ export default async function build(settings: AstroSettings, options: BuildOptio
 				Flags: [
 					['--drafts', `Include Markdown draft pages in the build.`],
 					['--singlePath', `Build a single path.`],
+					['--outDir', `Specify the output directory.`],
 					['--help (-h)', 'See all available flags.'],
 				],
 			},
@@ -222,7 +223,11 @@ class AstroBuilder {
 	}
 
 	private validateConfig() {
-		const { config } = this.settings;
+		let { config } = this.settings;
+
+		if (this.flags?.outDir) {
+			config.outDir = new URL(this.flags.outDir + '/', config.root);
+		}
 
 		// outDir gets blown away so it can't be the root.
 		if (config.outDir.toString() === config.root.toString()) {
