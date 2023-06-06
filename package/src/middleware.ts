@@ -1,8 +1,12 @@
 import path from "path";
-import { copyFiles } from "./utils";
-import STORE from "./store";
-import { exec } from "child_process";
+import { copyFiles } from "./utils.js";
+import STORE from "./store.js";
+import fs from "fs";
 import type { Request, Response, NextFunction } from "express";
+
+const { cli } = await import(
+  "../node_modules/@isr4astro/astro/dist/cli/index.js"
+);
 
 export default function isrMiddleware(
   req: Request,
@@ -36,23 +40,35 @@ export default function isrMiddleware(
 }
 
 function buildPath(url: string) {
+  const hash = url.replace(/\//g, "") + new Date().getTime().toString();
+  console.log(hash);
   const absPath = path.resolve("."); // this way it works both in prod and dev, instead of using __dirname
   const buildPath = url.slice(0, url.length - 1);
 
-  exec(
-    `node ${absPath}/node_modules/@isr4astro/core/node_modules/@isr4astro/astro/astro.js build --root ${absPath} --singlePath ${buildPath}`,
-    (err, stdout, stderr) => {
-      if (err) {
-        return;
-      }
-
-      copyFiles()
+  cli([
+    "node",
+    `${absPath}/node_modules/@isr4astro/core/node_modules/@isr4astro/astro/astro.js`,
+    "build",
+    "--root",
+    absPath,
+    "--singlePath",
+    buildPath,
+    "--outDir",
+    `isr-cache/${hash}`,
+  ])
+    .then(() => {
+      copyFiles(`./isr-cache/${hash}`)
         .then(() => {
           STORE[url] = new Date();
+
+          fs.rmSync(`./isr-cache/${hash}`, { recursive: true });
+          console.log(`Removed ./isr-cache/${hash}`);
         })
         .catch((err) => {
           console.log(err);
         });
-    }
-  );
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }

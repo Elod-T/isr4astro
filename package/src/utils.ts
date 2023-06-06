@@ -1,11 +1,11 @@
 import reflect from "@alumna/reflect";
 
-export async function copyFiles() {
+export async function copyFiles(dest?: string) {
   const dist = process.env.BUILD_PATH ?? "./dist";
   const server = process.env.SERVER_PATH ?? "./server";
 
   const { res, err } = await reflect({
-    src: dist,
+    src: dest ?? dist,
     dest: server,
     delete: false,
   });

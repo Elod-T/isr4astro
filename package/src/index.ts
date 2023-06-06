@@ -1,8 +1,7 @@
 import express from "express";
-import handle from "./middleware";
-import dotenv from "dotenv";
-import setup from "./setup";
-dotenv.config();
+import handle from "./middleware.js";
+import "dotenv/config";
+import setup from "./setup.js";
 
 async function run() {
   await setup();
