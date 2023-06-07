@@ -43,7 +43,7 @@ function buildPath(url: string) {
   const hash = url.replace(/\//g, "") + new Date().getTime().toString();
   console.log(hash);
   const absPath = path.resolve("."); // this way it works both in prod and dev, instead of using __dirname
-  const buildPath = url.slice(0, url.length - 1);
+  const buildPath = url != "/" ? url.slice(0, url.length - 1) : "/";
 
   cli([
     "node",
